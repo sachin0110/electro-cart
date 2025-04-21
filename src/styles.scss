@@ -1,1 +1,298 @@
 /* You can add global styles to this file, and also import other style files */
+
+@use "@angular/material" as mat;
+
+// Include base styles
+@include mat.core();
+
+// Define our custom colors
+:root {
+  --primary-color: #3498db;
+  --primary-lighter: #4a6b8a;
+  --primary-darker: #1a2530;
+
+  --accent-color: #3498db;
+  --accent-lighter: #5faee3;
+  --accent-darker: #217dbb;
+
+  --warn-color: #e74c3c;
+
+  --background-color: #f8f9fa;
+  --card-color: white;
+  --text-color: #333;
+}
+
+/* Global styles */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+// Dialog fixes
+.cdk-overlay-container {
+  z-index: 1000 !important;
+}
+
+.cdk-overlay-backdrop {
+  background: rgba(0, 0, 0, 0.32);
+}
+
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-color: white;
+}
+
+.mat-mdc-dialog-surface {
+  opacity: 1 !important;
+}
+
+.mat-mdc-menu-panel {
+  min-width: 120px !important;
+  max-width: 280px !important;
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  max-height: calc(100vh - 48px) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  z-index: 1056 !important;
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8a8a8;
+}
+
+// Material overrides to ensure better styling
+.mat-mdc-card {
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background-color: var(--card-color) !important;
+}
+
+.mat-mdc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.mat-mdc-form-field {
+  --mat-mdc-form-field-floating-label-scale: 0.75;
+  --mdc-outlined-text-field-container-shape: 8px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  position: static !important;
+}
+
+.mat-mdc-select-panel {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  overflow: hidden;
+}
+
+.mat-mdc-option {
+  min-height: 40px !important;
+}
+
+/* Button styling */
+.mat-mdc-raised-button.mat-primary {
+  background-color: var(--primary-color) !important;
+}
+
+.mat-mdc-raised-button.mat-primary:hover {
+  background-color: var(--accent-color) !important;
+}
+
+.mat-mdc-button.mat-primary {
+  color: var(--primary-color) !important;
+}
+
+.mat-mdc-button.mat-primary:hover {
+  background-color: rgba(52, 152, 219, 0.1) !important;
+}
+
+/* Secondary button style */
+.mat-mdc-raised-button:not(.mat-primary):not(.mat-warn):not(.mat-accent) {
+  background-color: white !important;
+  color: var(--primary-color) !important;
+  border: 1px solid #e0e0e0 !important;
+}
+
+.mat-mdc-raised-button:not(.mat-primary):not(.mat-warn):not(.mat-accent):hover {
+  background-color: rgba(52, 152, 219, 0.1) !important;
+}
+
+/* Icon button styling */
+.mat-mdc-icon-button {
+  color: white !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.mat-mdc-icon-button:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Remove button styling */
+button.remove-button {
+  color: #e74c3c !important;
+}
+
+/* Custom styling for active elements */
+.active-item {
+  background-color: rgba(52, 152, 219, 0.1) !important;
+  border-left: 4px solid #3498db !important;
+}
+
+// Responsive styling
+@media (max-width: 768px) {
+  .mat-mdc-card {
+    border-radius: 6px !important;
+  }
+
+  .mat-toolbar {
+    padding: 0 12px !important;
+  }
+
+  .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  // Fix grid layout on small screens
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)) !important;
+  }
+
+  // Ensure proper spacing on small screens
+  .mat-mdc-dialog-container .mat-mdc-dialog-content {
+    padding: 16px 16px !important;
+    max-height: 70vh !important;
+  }
+}
+
+// Dialog styles
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 10px !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.mat-mdc-dialog-container .mat-mdc-dialog-title {
+  font-size: 22px;
+  font-weight: 500;
+  color: #1976d2;
+  padding: 16px 24px 0;
+}
+
+.mat-mdc-dialog-container .mat-mdc-dialog-content {
+  padding: 16px 24px !important;
+  max-height: 65vh !important;
+  overflow-x: hidden !important;
+}
+
+// Prevent content from being hidden under fixed headers
+.main-content {
+  padding-top: 24px !important;
+}
+
+.mat-mdc-card-content {
+  overflow: hidden !important;
+  flex-grow: 1 !important;
+}
+
+// Fix icon button sizing to prevent text overflow
+.mat-icon {
+  font-size: 24px !important;
+  width: 24px !important;
+  height: 24px !important;
+  line-height: 24px !important;
+}
+
+// Fix badge positioning
+.mat-badge-content {
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  font-family: Roboto, "Helvetica Neue", sans-serif !important;
+}
+
+// Fix tooltip z-index issue
+.mat-tooltip {
+  z-index: 1060 !important;
+}
+
+// Fix button text wrapping
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button,
+.mat-mdc-unelevated-button {
+  white-space: nowrap !important;
+}
+
+// Prevent text overflow and fix container spacing
+.container {
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+// Add styling for product dialog
+.product-details-dialog {
+  // Removed
+}
+
+// Custom snackbar styles
+.custom-snackbar {
+  background-color: #1a2530 !important;
+  color: #f5f5f5 !important;
+
+  // Material 3 class names
+  .mdc-snackbar__surface {
+    background-color: #1a2530 !important;
+  }
+
+  .mdc-snackbar__label {
+    color: #f5f5f5 !important;
+  }
+
+  .mat-mdc-button {
+    color: #f5f5f5 !important;
+  }
+
+  // Older Material class names for backward compatibility
+  .mat-simple-snackbar-action {
+    color: #f5f5f5 !important;
+  }
+
+  button {
+    color: #f5f5f5 !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+}

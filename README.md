@@ -1,59 +1,107 @@
-# ElectroCart
+# Electro Cart
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
+A modern e-commerce application for an electronics store built with Angular 19 and Material Design.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Product browsing with filtering capabilities
+- Search by name and type
+- Price range filtering
+- Product categories (TVs, Appliances, Phones, Video Games)
+- Product details modal with reviews
+- Shopping cart functionality using NgRx state management
+- Responsive grid layout
+- Modern Material Design UI
 
-```bash
-ng serve
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── core/                  # Core functionality used across the app
+│   │   ├── models/            # Data models and interfaces
+│   │   ├── services/          # Global services like API communication
+│   │   └── store/             # NgRx state management
+│   │       └── cart/          # Cart-specific state
+│   ├── features/              # Feature-specific modules
+│   │   ├── products/          # Product browsing and details
+│   │   │   ├── product-list/
+│   │   │   └── product-details/
+│   │   └── cart/              # Cart feature
+│   ├── shared/                # Shared components, directives, and pipes
+│   ├── app.component.ts       # Root component
+│   ├── app.config.ts          # App configuration
+│   └── app.routes.ts          # App routing
+
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Setup
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. Clone the repository:
 
 ```bash
-ng generate component component-name
+git clone <repository-url>
+cd electro-cart
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+2. Install dependencies:
 
 ```bash
-ng generate --help
+npm install
 ```
 
-## Building
-
-To build the project run:
+3. Start the development server:
 
 ```bash
-ng build
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+4. Open your browser and navigate to `http://localhost:4200`
 
-## Running unit tests
+## Technology Stack
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- Angular 19
+- Angular Material
+- NgRx for state management
+- RxJS for reactive programming
+- TypeScript
 
-```bash
-ng test
-```
+## Development
 
-## Running end-to-end tests
+The app uses a modular, feature-based architecture:
 
-For end-to-end (e2e) testing, run:
+1. **Core Module**: Contains services, models, and store logic used throughout the app.
+2. **Features**: Separate features are isolated in their own directories with related components.
+3. **Shared**: Components that are reused across different features.
 
-```bash
-ng e2e
-```
+This structure allows for better maintainability and scalability as the application grows.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Features Implemented
 
-## Additional Resources
+1. Product Browsing
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+   - Grid layout with 3 cards per row
+   - Load more functionality
+   - Product filtering
+
+2. Product Details
+
+   - Modal view with detailed information
+   - Customer reviews
+   - Add to cart functionality
+
+3. Shopping Cart
+   - Cart summary
+   - Remove items
+   - Total calculation
+   - Persistent state with NgRx
+
+## Future Improvements
+
+1. Add authentication
+2. Implement checkout process
+3. Add product categories management
+4. Add user reviews functionality
+5. Implement real backend API
+6. Add unit tests
+7. Add e2e tests
