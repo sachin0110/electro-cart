@@ -1,26 +1,28 @@
-::ng-deep .mat-mdc-dialog-container {
-  --mdc-dialog-container-color: white;
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-color: white !important;
+  background-color: white !important;
   border-radius: 10px;
   overflow: hidden;
   max-width: 95vw !important;
 }
 
-::ng-deep .cdk-overlay-pane {
+.cdk-overlay-pane {
+  pointer-events: auto !important;
+  background: white !important;
+}
+
+.cdk-overlay-backdrop {
   pointer-events: auto !important;
 }
 
-::ng-deep .cdk-overlay-backdrop {
-  pointer-events: auto !important;
-}
-
-::ng-deep mat-dialog-content {
+mat-dialog-content {
   max-height: 70vh !important;
   overflow-x: hidden !important;
   pointer-events: auto !important;
   padding: 0 !important;
 }
 
-::ng-deep mat-dialog-title {
+mat-dialog-title {
   padding: 16px 24px 0 !important;
   font-size: 24px !important;
   color: #3498db !important;
