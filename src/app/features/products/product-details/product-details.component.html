@@ -1,0 +1,72 @@
+<h2 mat-dialog-title>{{data.name}}</h2>
+
+<mat-dialog-content>
+  <div class="product-details">
+    <!-- Image Section -->
+    <div class="product-image-container">
+      <img [src]="data.imageUrl" [alt]="data.name" class="product-image">
+      <div class="quick-info">
+        <p class="price">${{data.price.toFixed(2)}}</p>
+        <div class="rating-container">
+          <span class="rating-stars">
+            <span *ngFor="let star of [1,2,3,4,5]">
+              <span class="star" [class.filled]="star <= data.rating">★</span>
+            </span>
+          </span>
+          <span class="rating-text">{{data.rating}}/5</span>
+        </div>
+        <div class="action-buttons add-to-cart-button" >
+          <button mat-raised-button color="primary" (click)="onAddToCart()">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Details Section -->
+    <div class="details-container">
+      <!-- Tabs for organizing information -->
+      <div class="tabs">
+        <div class="tab" [class.active]="activeTab === 'description'" (click)="activeTab = 'description'">
+          Description
+        </div>
+        <div class="tab" [class.active]="activeTab === 'reviews'" (click)="activeTab = 'reviews'">
+          Reviews ({{data.reviews && data.reviews.length || 0}})
+        </div>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="tab-content">
+        <!-- Description Tab -->
+        <div *ngIf="activeTab === 'description'" class="description">
+          <p>{{data.longDescription}}</p>
+        </div>
+
+        <!-- Reviews Tab -->
+        <div *ngIf="activeTab === 'reviews'" class="reviews">
+          <div *ngIf="data.reviews && data.reviews.length; else noReviews">
+            <div *ngFor="let review of data.reviews" class="review">
+              <div class="review-header">
+                <span class="reviewer">{{review.userName}}</span>
+                <span class="review-rating">
+                  <span *ngFor="let star of [1,2,3,4,5]">
+                    <span class="star" [class.filled]="star <= review.rating">★</span>
+                  </span>
+                </span>
+                <span class="date">{{review.date}}</span>
+              </div>
+              <p class="comment">{{review.comment}}</p>
+            </div>
+          </div>
+          <ng-template #noReviews>
+            <p class="no-reviews">No reviews yet for this product.</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="closeDialog()">Close</button>
+</mat-dialog-actions> 

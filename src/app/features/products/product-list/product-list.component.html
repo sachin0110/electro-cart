@@ -1,0 +1,64 @@
+<div class="page-wrapper">
+  <div class="container">
+    <div class="filters">
+      <form [formGroup]="filterForm">
+        <div class="filter-section">
+          <h3>Search Products</h3>
+          <mat-form-field appearance="outline" class="search-field">
+            <mat-label>Search products</mat-label>
+            <input matInput formControlName="searchText" placeholder="Search by name or type">
+          </mat-form-field>
+        </div>
+
+        <div class="filter-section">
+          <h3>Product Type</h3>
+          <mat-form-field appearance="outline">
+            <mat-label>Select Type</mat-label>
+            <mat-select formControlName="type">
+              <mat-option *ngFor="let type of productTypes$ | async" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="filter-section price-ranges">
+          <h3>Price Ranges</h3>
+          <div *ngFor="let range of priceRanges$ | async">
+            <mat-checkbox [checked]="isRangeSelected(range.id)"
+                        (change)="togglePriceRange(range.id)">
+              {{range.label}}
+            </mat-checkbox>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="products-grid">
+      <h1 class="products-title">Products</h1>
+      
+      <div class="grid-container">
+        <div *ngFor="let product of products$ | async" class="product-card">
+          <mat-card (click)="openProductDetails(product)">
+            <div class="image-container">
+              <img [src]="product.imageUrl" [alt]="product.name">
+            </div>
+            <mat-card-content>
+              <h2>{{product.name}}</h2>
+              <p class="price">${{product.price.toFixed(2)}}</p>
+              <div class="rating">
+                {{product.rating}}/5
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
+      <div *ngIf="hasMoreProducts" class="load-more">
+        <button mat-raised-button color="primary" (click)="loadMore()">
+          Load More
+        </button>
+      </div>
+    </div>
+  </div>
+</div> 

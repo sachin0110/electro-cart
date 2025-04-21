@@ -1,0 +1,46 @@
+<div class="cart-container">
+  <h1>Shopping Cart</h1>
+  
+  <ng-container *ngIf="cartItems$ | async as items">
+    <div *ngIf="items.length > 0; else emptyCart">
+      <div class="cart-items">
+        <mat-card *ngFor="let item of items" class="cart-item">
+          <div class="item-content">
+            <div class="item-image-container">
+              <img [src]="item.product.imageUrl" [alt]="item.product.name" class="item-image">
+            </div>
+            <div class="item-details">
+              <h2>{{item.product.name}}</h2>
+              <p class="price">${{item.product.price.toFixed(2)}}</p>
+              <p class="rating">Rating: {{item.product.rating}}/5</p>
+            </div>
+            <button mat-icon-button color="warn" (click)="removeItem(item.product.id)" class="remove-button">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </div>
+
+      <div class="cart-summary">
+        <h2>Order Summary</h2>
+        <div class="total">
+          <span>Total:</span>
+          <span class="total-amount">${{cartTotal$ | async | number:'1.2-2'}}</span>
+        </div>
+        <button mat-raised-button color="primary" class="checkout-button">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #emptyCart>
+    <div class="empty-cart">
+      <mat-icon class="empty-cart-icon">shopping_cart</mat-icon>
+      <p>Your cart is empty</p>
+      <button class="continue-shopping-button" mat-raised-button color="primary" routerLink="/">
+        Continue Shopping
+      </button>
+    </div>
+  </ng-template>
+</div> 
