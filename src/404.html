@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Electro Cart - Page Not Found</title>
+  <script>
+    // Redirect to the app and let Angular handle the 404 route
+    const pathSegmentsToKeep = 1;
+    
+    var l = window.location;
+    var base = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/';
+    var path = l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/') + (l.search ? l.search : '');
+    
+    // Redirect to home with the original path as a query parameter
+    l.replace(base + '404');
+  </script>
+</head>
+<body>
+  Redirecting to 404 page...
+</body>
+</html> 
