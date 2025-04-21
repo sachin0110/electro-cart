@@ -45,11 +45,12 @@ body {
 }
 
 .mat-mdc-dialog-container {
-  --mdc-dialog-container-color: white;
+  --mdc-dialog-container-color: white !important;
+  background-color: white !important;
 }
 
 .mat-mdc-dialog-surface {
-  opacity: 1 !important;
+  background-color: white !important;
 }
 
 .mat-mdc-menu-panel {
@@ -61,6 +62,7 @@ body {
   border-radius: 4px !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
   z-index: 1056 !important;
+  background-color: white !important;
 }
 
 // Custom scrollbar
@@ -114,6 +116,7 @@ body {
   border-radius: 8px !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
   overflow: hidden;
+  background-color: white !important;
 }
 
 .mat-mdc-option {
@@ -295,4 +298,31 @@ button.remove-button {
     color: #f5f5f5 !important;
     background-color: rgba(255, 255, 255, 0.1) !important;
   }
+}
+
+// Add styles for .cdk-overlay-pane
+.cdk-overlay-pane {
+  background-color: white !important;
+}
+
+// Make sure the dialog surface is white
+.mat-mdc-dialog-surface {
+  background-color: white !important;
+}
+
+// Set white background for any other overlay panels
+.mat-mdc-select-panel,
+.mat-mdc-autocomplete-panel,
+.mat-mdc-menu-panel {
+  background-color: white !important;
+}
+
+// Ensure overlay panes containing dialogs have white backgrounds
+.cdk-overlay-pane:has(.mat-mdc-dialog-container) {
+  background-color: white !important;
+}
+
+// For browsers that don't support :has
+.cdk-global-overlay-wrapper .cdk-overlay-pane {
+  background-color: white !important;
 }
