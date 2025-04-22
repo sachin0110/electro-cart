@@ -4,17 +4,6 @@ import { CartComponent } from './features/cart/cart.component';
 
 export const routes: Routes = [
   { path: '', component: ProductListComponent },
-  {
-    path: 'cart',
-    loadComponent: () =>
-      import('./features/cart/cart.component').then((c) => c.CartComponent),
-  },
-  {
-    path: '404',
-    loadComponent: () =>
-      import('./features/not-found/not-found.component').then(
-        (c) => c.NotFoundComponent
-      ),
-  },
-  { path: '**', redirectTo: '404' },
+  { path: 'cart', component: CartComponent },
+  { path: '**', redirectTo: '' },
 ];
