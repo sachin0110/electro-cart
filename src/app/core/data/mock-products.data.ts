@@ -532,7 +532,7 @@ export function generateMockProducts(
 
       const name = `${brand} ${model}`;
       const imageUrl = `https://placehold.co/300x200?text=${encodeURIComponent(
-        name.replace(/\s+/g, '+')
+        name.replace(/\s+/g, ' ')
       )}`;
 
       products.push({

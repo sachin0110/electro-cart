@@ -25,8 +25,7 @@
         <div class="filter-section price-ranges">
           <h3>Price Ranges</h3>
           <div *ngFor="let range of priceRanges$ | async">
-            <mat-checkbox [checked]="isRangeSelected(range.id)"
-                        (change)="togglePriceRange(range.id)">
+            <mat-checkbox [checked]="isRangeSelected(range.id)" (change)="togglePriceRange(range.id)">
               {{range.label}}
             </mat-checkbox>
           </div>
@@ -36,12 +35,12 @@
 
     <div class="products-grid">
       <h1 class="products-title">Products</h1>
-      
+
       <div class="grid-container">
         <div *ngFor="let product of products$ | async" class="product-card">
           <mat-card (click)="openProductDetails(product)">
             <div class="image-container">
-              <img [src]="product.imageUrl" [alt]="product.name">
+              <img [src]="product.imageUrl" alt="Product Image" [alt]="product.name">
             </div>
             <mat-card-content>
               <h2>{{product.name}}</h2>
@@ -61,4 +60,4 @@
       </div>
     </div>
   </div>
-</div> 
+</div>
