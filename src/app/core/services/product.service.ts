@@ -73,7 +73,7 @@ export class ProductService {
     const paginatedProducts = filteredProducts.slice(start, start + pageSize);
 
     // Simulate network delay
-    return of({ products: paginatedProducts, total }).pipe(delay(300));
+    return of({ products: paginatedProducts, total }).pipe(delay(100));
   }
 
   getPriceRanges(): Observable<PriceRange[]> {
@@ -85,6 +85,6 @@ export class ProductService {
   }
 
   getProductById(id: number): Observable<Product | undefined> {
-    return of(this.mockProducts.find((p) => p.id === id)).pipe(delay(300));
+    return of(this.mockProducts.find((p) => p.id === id)).pipe(delay(100));
   }
 }

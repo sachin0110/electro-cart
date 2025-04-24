@@ -4,7 +4,6 @@ import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -34,11 +33,7 @@ export class CartComponent {
   cartItems$: Observable<CartItem[]>;
   cartTotal$: Observable<number>;
 
-  constructor(
-    private store: Store,
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
-  ) {
+  constructor(private store: Store, private matIconRegistry: MatIconRegistry) {
     // Transform Product[] to CartItem[]
     this.cartItems$ = this.store.select(selectCartItems).pipe(
       map((products: Product[]) =>

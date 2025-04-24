@@ -14,6 +14,7 @@ export const initialMockProducts: Product[] = [
     price: 1299.99,
     rating: 4.5,
     imageUrl: 'https://placehold.co/300x200?text=Samsung+TV',
+    platformAddedDate: '2021-07-11',
     shortDescription: '65" QLED 4K Smart TV with HDR',
     longDescription:
       'Experience stunning picture quality with Quantum Dot technology, delivering over a billion shades of color. Features AI-powered 4K upscaling and smart TV capabilities.',
@@ -41,6 +42,7 @@ export const initialMockProducts: Product[] = [
     price: 999.99,
     rating: 4.8,
     imageUrl: 'https://placehold.co/300x200?text=iPhone+15+Pro',
+    platformAddedDate: '2023-02-15',
     shortDescription: 'Latest iPhone with Pro camera system',
     longDescription:
       'The iPhone 15 Pro features a revolutionary camera system, powerful A17 Pro chip, and stunning Super Retina XDR display with ProMotion.',
@@ -68,6 +70,7 @@ export const initialMockProducts: Product[] = [
     price: 499.99,
     rating: 4.9,
     imageUrl: 'https://placehold.co/300x200?text=PlayStation+5',
+    platformAddedDate: '2024-07-11',
     shortDescription: 'Next-gen gaming console with SSD',
     longDescription:
       'The PS5 offers lightning-fast loading with an ultra-high-speed SSD, deeper immersion with haptic feedback and adaptive triggers, and stunning 4K graphics.',
@@ -95,6 +98,7 @@ export const initialMockProducts: Product[] = [
     price: 1599.99,
     rating: 4.7,
     imageUrl: 'https://placehold.co/300x200?text=Dell+XPS+15',
+    platformAddedDate: '2019-09-01',
     shortDescription: 'Premium 15-inch laptop with 4K display',
     longDescription:
       'The Dell XPS 15 features a stunning 4K InfinityEdge display, powerful Intel Core processors, and NVIDIA graphics in a sleek, lightweight design.',
@@ -122,6 +126,7 @@ export const initialMockProducts: Product[] = [
     price: 329.99,
     rating: 4.6,
     imageUrl: 'https://placehold.co/300x200?text=Bose+Headphones',
+    platformAddedDate: '2021-01-31',
     shortDescription: 'Wireless noise-cancelling headphones',
     longDescription:
       'Industry-leading noise cancellation with premium sound quality. Features 20 hours of battery life, comfortable design, and seamless Bluetooth connectivity.',
@@ -535,6 +540,10 @@ export function generateMockProducts(
         name.replace(/\s+/g, ' ')
       )}`;
 
+      const date = new Date();
+      date.setDate(date.getDate() - Math.floor(Math.random() * 90));
+      const platformAddedDate = date.toISOString().split('T')[0];
+
       products.push({
         id,
         name,
@@ -542,6 +551,7 @@ export function generateMockProducts(
         price,
         rating: parseFloat(rating),
         imageUrl,
+        platformAddedDate,
         shortDescription,
         longDescription,
         reviews,
