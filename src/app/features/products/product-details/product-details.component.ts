@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import {
   MAT_DIALOG_DATA,
   MatDialogRef,
@@ -11,7 +11,7 @@ import { Product } from '../../../core/models/product.model';
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, MatButtonModule],
+  imports: [CommonModule, MatDialogModule, MatButtonModule, DatePipe],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
 })

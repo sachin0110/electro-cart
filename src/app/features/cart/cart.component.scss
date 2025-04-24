@@ -172,13 +172,10 @@ h1 {
 }
 
 .empty-cart-icon {
-  font-size: 80px;
-  width: 80px;
-  height: 80px;
+  font-size: 80px !important;
+  width: 80px !important;
+  height: 80px !important;
   color: #bdbdbd;
-  margin-bottom: 24px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .empty-cart p {

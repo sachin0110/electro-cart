@@ -22,6 +22,7 @@ export interface Product {
   price: number;
   rating: number;
   imageUrl: string;
+  platformAddedDate: string;
   shortDescription: string;
   longDescription: string;
   reviews: ProductReview[];

@@ -3,7 +3,7 @@
     <div class="filters">
       <form [formGroup]="filterForm">
         <div class="filter-section">
-          <h3>Search Products</h3>
+          <h3 class="relative"><mat-icon class="empty-cart-icon">search</mat-icon> <span>Search Products</span></h3>
           <mat-form-field appearance="outline" class="search-field">
             <mat-label>Search products</mat-label>
             <input matInput formControlName="searchText" placeholder="Search by name or type">
@@ -29,6 +29,9 @@
               {{range.label}}
             </mat-checkbox>
           </div>
+          <button type="button" mat-raised-button color="primary" class="clear-filter" (click)="clearFilter()">
+            <mat-icon class="empty-cart-icon">filter_alt_off</mat-icon>Clear Filters
+          </button>
         </div>
       </form>
     </div>
@@ -36,25 +39,40 @@
     <div class="products-grid">
       <h1 class="products-title">Products</h1>
 
-      <div class="grid-container">
-        <div *ngFor="let product of products$ | async" class="product-card">
-          <mat-card (click)="openProductDetails(product)">
-            <div class="image-container">
-              <img [src]="product.imageUrl" alt="Product Image" [alt]="product.name">
-            </div>
-            <mat-card-content>
-              <h2>{{product.name}}</h2>
-              <p class="price">${{product.price.toFixed(2)}}</p>
-              <div class="rating">
-                {{product.rating}}/5
+      <ng-container *ngIf="products$ | async as products; else noProducts">
+        <div *ngIf="products.length > 0; else noProducts" class="grid-container">
+          <div *ngFor="let product of products$ | async" class="product-card">
+            <mat-card>
+              <div class="image-container" (click)="openProductDetails(product)">
+                <img [src]="product.imageUrl" alt="Product Image" [alt]="product.name">
               </div>
-            </mat-card-content>
-          </mat-card>
+              <mat-card-content>
+                <h2>{{product.name}}</h2>
+                <p class="price">${{product.price.toFixed(2)}}</p>
+                <div class="rating">
+                  {{product.rating}}/5
+                  <button mat-raised-button color="primary" class="add-to-cart" (click)="addToCart(product)">
+                    <mat-icon class="empty-cart-icon">add_shopping_cart</mat-icon>
+                    Add to Cart
+                  </button>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
         </div>
-      </div>
+      </ng-container>
+      <ng-template #noProducts>
+        <p class="no-products-message">No products found.</p>
+        <div class="clear-filter">
+          <button mat-raised-button color="primary" class="clear-filter" (click)="clearFilter()">
+            <mat-icon class="empty-cart-icon">filter_alt_off</mat-icon>Clear Filters
+          </button>
+        </div>
+      </ng-template>
+      <!-- Else block for no products -->
 
       <div *ngIf="hasMoreProducts" class="load-more">
-        <button mat-raised-button color="primary" (click)="loadMore()">
+        <button type="button" mat-raised-button color="primary" (click)="loadMore()">
           Load More
         </button>
       </div>

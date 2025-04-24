@@ -19,14 +19,10 @@ import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { ProductService } from '../../../core/services/product.service';
-import {
-  Product,
-  ProductType,
-  PriceRange,
-  ProductFilters,
-} from '../../../core/models/product.model';
+import { Product, ProductFilters } from '../../../core/models/product.model';
 import { addToCart } from '../../../core/store/cart/cart.actions';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 
 @Component({
   selector: 'app-product-list',
@@ -40,6 +36,7 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
     MatInputModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatIconModule,
     MatDialogModule,
     MatSnackBarModule,
     MatGridListModule,
@@ -62,8 +59,11 @@ export class ProductListComponent implements OnInit {
     private store: Store,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
+    private matIconRegistry: MatIconRegistry,
     private fb: FormBuilder
   ) {
+    // Register Material icons
+    this.matIconRegistry.setDefaultFontSetClass('material-icons');
     this.filterForm = this.fb.group({
       searchText: [''],
       type: ['All'],
@@ -116,6 +116,11 @@ export class ProductListComponent implements OnInit {
     this.loadProducts();
   }
 
+  addToCart(product: Product) {
+    this.store.dispatch(addToCart({ product }));
+    this.openSnackBar();
+  }
+
   isRangeSelected(rangeId: number): boolean {
     return this.selectedPriceRanges.includes(rangeId);
   }
@@ -129,6 +134,20 @@ export class ProductListComponent implements OnInit {
     }
     this.currentPage = 1;
     this.loadProducts();
+  }
+
+  clearFilter() {
+    this.filterForm.reset();
+    this.selectedPriceRanges = [];
+  }
+
+  openSnackBar() {
+    this.snackBar.open('Product added to cart!', 'Close', {
+      duration: 1000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      panelClass: ['custom-snackbar'],
+    });
   }
 
   openProductDetails(product: Product) {
@@ -146,12 +165,7 @@ export class ProductListComponent implements OnInit {
     // Use afterClosed to handle subscription cleanup
     const subscription = dialogRef.componentInstance.addToCart.subscribe(() => {
       this.store.dispatch(addToCart({ product }));
-      this.snackBar.open('Product added to cart!', 'Close', {
-        duration: 3000,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom',
-        panelClass: ['custom-snackbar'],
-      });
+      this.openSnackBar();
       dialogRef.close();
     });
 

@@ -268,41 +268,33 @@ button.remove-button {
 
 // Custom snackbar styles
 .custom-snackbar {
-  background-color: #1a2530 !important;
-  color: #f5f5f5 !important;
+  background-color: #1a2530;
+  color: #f5f5f5;
 
   // Material 3 class names
   .mdc-snackbar__surface {
-    background-color: #1a2530 !important;
+    background-color: #1a2530;
   }
 
   .mdc-snackbar__label {
-    color: #f5f5f5 !important;
-  }
-
-  .mat-mdc-button {
-    color: #f5f5f5 !important;
+    color: #f5f5f5;
   }
 
   // Older Material class names for backward compatibility
   .mat-simple-snackbar-action {
-    color: #f5f5f5 !important;
+    color: #f5f5f5;
   }
 
   button {
-    color: #f5f5f5 !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #f5f5f5;
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }
 
-// Add styles for .cdk-overlay-pane
-.cdk-overlay-pane {
-  background-color: white !important;
-}
 
 // Make sure the dialog surface is white
 .mat-mdc-dialog-surface {
-  background-color: white !important;
+  background-color: white;
 }
 
 // Set white background for any other overlay panels
@@ -319,5 +311,5 @@ button.remove-button {
 
 // For browsers that don't support :has
 .cdk-global-overlay-wrapper .cdk-overlay-pane {
-  background-color: white !important;
+  padding:0;
 }

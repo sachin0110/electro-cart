@@ -4,9 +4,10 @@
   <div class="product-details">
     <!-- Image Section -->
     <div class="product-image-container">
-      <img [src]="data.imageUrl" alt="Product Image" [alt]="data.name" class="product-image">
+      <img [src]="data.imageUrl" [alt]="data.name" class="product-image">
       <div class="quick-info">
         <p class="price">${{data.price.toFixed(2)}}</p>
+
         <div class="rating-container">
           <span class="rating-stars">
             <span *ngFor="let star of [1,2,3,4,5]">
@@ -39,6 +40,8 @@
       <div class="tab-content">
         <!-- Description Tab -->
         <div *ngIf="activeTab === 'description'" class="description">
+          <p class="platform-added-date">Available Since: <b>{{data.platformAddedDate | date : "dd/MMM/yyyy"}}</b>
+          </p>
           <p>{{data.longDescription}}</p>
         </div>
 
@@ -53,7 +56,7 @@
                     <span class="star" [class.filled]="star <= review.rating">★</span>
                   </span>
                 </span>
-                <span class="date">{{review.date}}</span>
+                <span class="date">{{review.date | date : "dd/MMM/yyyy"}}</span>
               </div>
               <p class="comment">{{review.comment}}</p>
             </div>
