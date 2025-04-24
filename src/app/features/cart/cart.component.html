@@ -1,13 +1,13 @@
 <div class="cart-container">
   <h1>Shopping Cart</h1>
-  
+
   <ng-container *ngIf="cartItems$ | async as items">
     <div *ngIf="items.length > 0; else emptyCart">
       <div class="cart-items">
         <mat-card *ngFor="let item of items" class="cart-item">
           <div class="item-content">
             <div class="item-image-container">
-              <img [src]="item.product.imageUrl" [alt]="item.product.name" class="item-image">
+              <img [src]="item.product.imageUrl" [alt]="item.product.name" alt="Product Image" class="item-image">
             </div>
             <div class="item-details">
               <h2>{{item.product.name}}</h2>
@@ -43,4 +43,4 @@
       </button>
     </div>
   </ng-template>
-</div> 
+</div>

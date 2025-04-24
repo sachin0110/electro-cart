@@ -4,7 +4,7 @@
   <div class="product-details">
     <!-- Image Section -->
     <div class="product-image-container">
-      <img [src]="data.imageUrl" [alt]="data.name" class="product-image">
+      <img [src]="data.imageUrl" alt="Product Image" [alt]="data.name" class="product-image">
       <div class="quick-info">
         <p class="price">${{data.price.toFixed(2)}}</p>
         <div class="rating-container">
@@ -15,7 +15,7 @@
           </span>
           <span class="rating-text">{{data.rating}}/5</span>
         </div>
-        <div class="action-buttons add-to-cart-button" >
+        <div class="action-buttons add-to-cart-button">
           <button mat-raised-button color="primary" (click)="onAddToCart()">
             Add to Cart
           </button>
@@ -69,4 +69,4 @@
 
 <mat-dialog-actions align="end">
   <button mat-button (click)="closeDialog()">Close</button>
-</mat-dialog-actions> 
+</mat-dialog-actions>
