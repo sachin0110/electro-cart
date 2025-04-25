@@ -1,5 +1,10 @@
 <div class="cart-container">
-  <h1>Shopping Cart</h1>
+  <div class="cart-title">
+    <h1>Shopping Cart</h1>
+    <button mat-raised-button color="primary" class="clear-cart" (click)="clearCart()">
+      Clear Cart
+    </button>
+  </div>
 
   <ng-container *ngIf="cartItems$ | async as items">
     <div *ngIf="items.length > 0; else emptyCart">

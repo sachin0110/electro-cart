@@ -162,6 +162,16 @@ h1 {
   transition: background-color 0.3s;
 }
 
+
+.cart-title{
+  display: flex;
+  justify-content: space-between;
+}
+.clear-cart{
+ color: white;
+    border-radius: 8px;
+}
+
 .empty-cart {
   text-align: center;
   padding: 60px 40px;

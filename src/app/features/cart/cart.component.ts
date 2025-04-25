@@ -12,7 +12,7 @@ import {
   selectCartItems,
   selectCartTotal,
 } from '../../core/store/cart/cart.selectors';
-import { removeFromCart } from '../../core/store/cart/cart.actions';
+import { removeFromCart, clearCart } from '../../core/store/cart/cart.actions';
 import { CartItem } from '../../core/models/cart.model';
 import { Product } from '../../core/models/product.model';
 
@@ -50,6 +50,9 @@ export class CartComponent {
     this.matIconRegistry.setDefaultFontSetClass('material-icons');
   }
 
+  clearCart() {
+    this.store.dispatch(clearCart());
+  }
   removeItem(productId: number) {
     this.store.dispatch(removeFromCart({ productId }));
   }

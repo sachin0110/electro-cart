@@ -12,10 +12,18 @@ export const cartReducer = createReducer(
     ...state,
     items: [...state.items, product],
   })),
-  on(CartActions.removeFromCart, (state, { productId }) => ({
-    ...state,
-    items: state.items.filter((item) => item.id !== productId),
-  })),
+  on(CartActions.removeFromCart, (state, { productId }) => {
+    const index = state.items.findIndex((item) => item.id === productId);
+
+    if (index === -1) {
+      return state; // no matching item found, return state as is
+    }
+
+    return {
+      ...state,
+      items: [...state.items.slice(0, index), ...state.items.slice(index + 1)],
+    };
+  }),
   on(CartActions.clearCart, (state) => ({
     ...state,
     items: [],
