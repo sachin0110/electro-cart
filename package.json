@@ -1,6 +1,6 @@
 {
   "name": "electro-cart",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,7 +10,8 @@
     "check": "ng build && ng test",
     "release:patch": "standard-version --release-as patch",
     "release:minor": "standard-version --release-as minor",
-    "release:major": "standard-version --release-as major"
+    "release:major": "standard-version --release-as major",
+    "postinstall": "node version.js"
   },
   "private": true,
   "dependencies": {
