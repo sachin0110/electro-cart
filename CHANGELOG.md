@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2](https://github.com/sachin0110/electro-cart/compare/v0.0.1...v0.0.2) (2025-05-06)
+
+
+### Bug Fixes
+
+* removing version.js and its usage ([c6e70a1](https://github.com/sachin0110/electro-cart/commit/c6e70a1e79c6bb1e41b05cad21db84f5f3421a5a))
+
 ### 0.0.1 (2025-05-06)
 
 
