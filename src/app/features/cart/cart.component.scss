@@ -167,9 +167,16 @@ h1 {
   display: flex;
   justify-content: space-between;
 }
+
+.items-container {
+  position: relative;
+}
 .clear-cart{
- color: white;
-    border-radius: 8px;
+  color: white;
+  border-radius: 8px;
+  position: absolute;
+  right: 0;
+  top: -50px;
 }
 
 .empty-cart {
