@@ -1,6 +1,6 @@
 {
   "name": "electro-cart",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,9 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "check": "ng build && ng test",
-    "release:patch": "standard-version -- --release-as-patch",
-    "release:minor": "standard-version -- --release-as-minor",
-    "release:major": "standard-version -- --release-as-major"
+    "release:patch": "standard-version -- --release-as patch",
+    "release:minor": "standard-version -- --release-as minor",
+    "release:major": "standard-version -- --release-as major"
   },
   "private": true,
   "dependencies": {
