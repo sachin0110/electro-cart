@@ -1,13 +1,17 @@
 {
   "name": "electro-cart",
-  "version": "0.0.0",
+  "version": "1.2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "check": "ng build && ng test"
+    "check": "ng build && ng test",
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major",
+    "postinstall": "node version.js"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +29,7 @@
     "@ngrx/store": "^19.1.0",
     "@ngrx/store-devtools": "^19.1.0",
     "rxjs": "~7.8.0",
+    "standard-version": "^9.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
@@ -40,5 +45,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.7.2"
+  },
+  "standard-version": {
+    "scripts": {}
   }
 }

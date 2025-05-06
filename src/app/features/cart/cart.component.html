@@ -1,13 +1,14 @@
 <div class="cart-container">
   <div class="cart-title">
     <h1>Shopping Cart</h1>
-    <button mat-raised-button color="primary" class="clear-cart" (click)="clearCart()">
-      Clear Cart
-    </button>
+
   </div>
 
   <ng-container *ngIf="cartItems$ | async as items">
-    <div *ngIf="items.length > 0; else emptyCart">
+    <div class="items-container" *ngIf="items.length > 0; else emptyCart">
+      <button mat-raised-button color="primary" class="clear-cart" (click)="clearCart()">
+        Clear Cart
+      </button>
       <div class="cart-items">
         <mat-card *ngFor="let item of items" class="cart-item">
           <div class="item-content">
