@@ -1,8 +1,20 @@
 import { Routes } from '@angular/router';
-import { ProductListComponent } from './features/products/product-list/product-list.component';
+import { LoginComponent } from './features/login/login.component';
 
 export const routes: Routes = [
-  { path: '', component: ProductListComponent },
+  { path: '', component: LoginComponent },
+  {
+    path: 'landing',
+    loadComponent: () =>
+      import('./features/landing/landing.component').then(
+        (m) => m.LandingComponent
+      ),
+  },
+  {
+    path: 'admin',
+    loadComponent: () =>
+      import('./features/admin/admin.component').then((m) => m.AdminComponent),
+  },
   {
     path: 'cart',
     loadComponent: () =>

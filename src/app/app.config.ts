@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
       maxAge: 25,
       logOnly: false,
       autoPause: true,
-      trace: false,
+      trace: true,
       traceLimit: 75,
     }),
     importProvidersFrom(AppModule),

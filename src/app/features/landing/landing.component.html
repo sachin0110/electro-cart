@@ -1,0 +1,26 @@
+<mat-toolbar color="primary" class="header-toolbar">
+  <div class="header-left">
+    <span routerLink="/landing" class="logo">Electro Cart</span>
+  </div>
+  <div class="header-right">
+    <button mat-icon-button routerLink="/cart" [matBadge]="cartItemsCount$ | async"
+      [matBadgeHidden]="!(cartItemsCount$ | async)" matBadgeColor="warn" class="cart-button" aria-label="Shopping cart">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <button mat-icon-button routerLink="/login" matBadgeColor="warn" aria-label="Logout">
+      <mat-icon>logout</mat-icon>
+    </button>
+
+  </div>
+
+</mat-toolbar>
+<main class="main-content">
+  <div class="container">
+    <app-product-list></app-product-list>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2025 Electro Cart. All rights reserved.</p>
+  <p>App Version: {{currentAppVersion}}</p>
+</footer>

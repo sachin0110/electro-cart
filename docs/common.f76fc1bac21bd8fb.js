@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkelectro_cart=self.webpackChunkelectro_cart||[]).push([[76],{2751:(u,r,c)=>{c.d(r,{Fs:()=>s,rk:()=>n,yK:()=>l});var e=c(9640);const a=(0,e.UX)("cart"),s=(0,e.Mz)(a,t=>t.items),l=(0,e.Mz)(s,t=>t.length),n=(0,e.Mz)(s,t=>t.reduce((o,_)=>o+_.price,0))}}]);
