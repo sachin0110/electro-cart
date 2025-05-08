@@ -7,6 +7,7 @@
   <ng-container *ngIf="cartItems$ | async as items">
     <div class="items-container" *ngIf="items.length > 0; else emptyCart">
       <button mat-raised-button color="primary" class="clear-cart" (click)="clearCart()">
+        <mat-icon>remove_shopping_cart</mat-icon>
         Clear Cart
       </button>
       <div class="cart-items">
@@ -44,7 +45,7 @@
     <div class="empty-cart">
       <mat-icon class="empty-cart-icon">shopping_cart</mat-icon>
       <p>Your cart is empty</p>
-      <button class="continue-shopping-button" mat-raised-button color="primary" routerLink="/">
+      <button class="continue-shopping-button" mat-raised-button color="primary" routerLink="/landing">
         Continue Shopping
       </button>
     </div>

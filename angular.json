@@ -26,6 +26,7 @@
             "styles": ["src/styles.scss"],
             "scripts": []
           },
+
           "configurations": {
             "production": {
               "baseHref": "/electro-cart/",
@@ -44,13 +45,27 @@
               "outputHashing": "all"
             },
             "development": {
-              "baseHref": "./",
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "electro-cart:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "electro-cart:build:production"
+            },
+            "development": {
+              "buildTarget": "electro-cart:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
         },
 
         "extract-i18n": {

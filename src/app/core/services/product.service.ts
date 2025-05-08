@@ -1,90 +1,87 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { inject, Injectable } from '@angular/core';
+import { Observable, map } from 'rxjs';
 import {
   Product,
   ProductFilters,
   ProductType,
   PriceRange,
 } from '../models/product.model';
-import {
-  initialMockProducts,
-  mockPriceRanges,
-  mockProductTypes,
-  generateMockProducts,
-} from '../data/mock-products.data';
+import { mockPriceRanges, mockProductTypes } from '../data/mock-products.data';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private mockProducts: Product[] = [];
   private priceRanges: PriceRange[] = mockPriceRanges;
-
-  constructor() {
-    // Initialize the product list with initial products and generate 100 more
-    this.mockProducts = [
-      ...initialMockProducts,
-      ...generateMockProducts(100, initialMockProducts.length + 1),
-    ];
-  }
+  private apiUrl = 'https://product-api-q8zt.onrender.com/api/products';
+  private http = inject(HttpClient);
 
   getProducts(
     filters: ProductFilters,
     page: number = 1,
     pageSize: number = 10
   ): Observable<{ products: Product[]; total: number }> {
-    let filteredProducts = [...this.mockProducts];
+    return this.http.get<Product[]>(this.apiUrl).pipe(
+      map((products) => {
+        let filtered = [...products];
 
-    // Apply type filter
-    if (filters.type !== 'All') {
-      filteredProducts = filteredProducts.filter(
-        (product) => product.type === filters.type
-      );
-    }
-
-    // Apply price range filter
-    if (filters.priceRanges.length > 0) {
-      filteredProducts = filteredProducts.filter((product) => {
-        return filters.priceRanges.some((rangeId) => {
-          const range = this.priceRanges.find((r) => r.id === rangeId);
-          if (!range) return false;
-          return (
-            product.price >= range.min &&
-            (range.max === null || product.price <= range.max)
+        // Apply type filter
+        if (filters.type !== 'All') {
+          filtered = filtered.filter(
+            (product) => product.type === filters.type
           );
-        });
-      });
-    }
+        }
 
-    // Apply search text filter
-    if (filters.searchText) {
-      const searchLower = filters.searchText.toLowerCase();
-      filteredProducts = filteredProducts.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchLower) ||
-          product.type.toLowerCase().includes(searchLower)
-      );
-    }
+        // Apply price range filter
+        if (filters.priceRanges.length > 0) {
+          filtered = filtered.filter((product) =>
+            filters.priceRanges.some((rangeId) => {
+              const range = this.priceRanges.find((r) => r.id === rangeId);
+              return range
+                ? product.price >= range.min &&
+                    (range.max === null || product.price <= range.max)
+                : false;
+            })
+          );
+        }
 
-    // Calculate pagination
-    const total = filteredProducts.length;
-    const start = (page - 1) * pageSize;
-    const paginatedProducts = filteredProducts.slice(start, start + pageSize);
+        // Apply search text filter
+        if (filters.searchText) {
+          const searchLower = filters.searchText.toLowerCase();
+          filtered = filtered.filter(
+            (product) =>
+              product.name.toLowerCase().includes(searchLower) ||
+              product.type.toLowerCase().includes(searchLower)
+          );
+        }
 
-    // Simulate network delay
-    return of({ products: paginatedProducts, total }).pipe(delay(100));
+        const total = filtered.length;
+        const start = (page - 1) * pageSize;
+        const paginated = filtered.slice(start, start + pageSize);
+
+        return { products: paginated, total };
+      })
+    );
   }
 
   getPriceRanges(): Observable<PriceRange[]> {
-    return of(this.priceRanges);
+    return new Observable((observer) => {
+      observer.next(this.priceRanges);
+      observer.complete();
+    });
   }
 
   getProductTypes(): Observable<ProductType[]> {
-    return of(mockProductTypes);
+    return new Observable((observer) => {
+      observer.next(mockProductTypes);
+      observer.complete();
+    });
   }
 
   getProductById(id: number): Observable<Product | undefined> {
-    return of(this.mockProducts.find((p) => p.id === id)).pipe(delay(100));
+    return this.http
+      .get<Product[]>(this.apiUrl)
+      .pipe(map((products) => products.find((p) => p.id === id)));
   }
 }
