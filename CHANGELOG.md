@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/sachin0110/electro-cart/compare/v1.2.0...v1.3.0) (2025-05-08)
+
+
+### Features
+
+* adding docs for deployment on github pages ([b22d0b8](https://github.com/sachin0110/electro-cart/commit/b22d0b8bc8f5c3a895155e813f8c00aedf5b785c))
+* adding routes for dashboard, login, landing page and adming along with other changes ([0a6a45c](https://github.com/sachin0110/electro-cart/commit/0a6a45ce1636f9fbec13d93159a9cb448022b333))
+
+
+### Bug Fixes
+
+* clear cart button condition and ssr removal ([494b081](https://github.com/sachin0110/electro-cart/commit/494b08113715d56801c2f12a648a945f5e891801))
+
 ## [1.2.0](https://github.com/sachin0110/electro-cart/compare/v1.1.0...v1.2.0) (2025-05-06)
 
 ## [1.1.0](https://github.com/sachin0110/electro-cart/compare/v1.0.2...v1.1.0) (2025-05-06)
